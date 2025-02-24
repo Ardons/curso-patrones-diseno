@@ -6,18 +6,26 @@ _ = load_dotenv()
 
 class PaymentProcessor:
     def process_transaction(self, customer_data, payment_data):
+        
+        #ETAPA 1: VALIDACIONES
+        
+        #si el cliente no tiene nombre = INVALIDO
         if not customer_data.get("name"):
             print("Invalid customer data: missing name")
             return
 
+        #si el cliente no tiene contacto = INVALIDO
         if not customer_data.get("contact_info"):
             print("Invalid customer data: missing contact info")
             return
-
+        
+        #si el cliente no tiene origen de pago = INVALIDO
         if not payment_data.get("source"):
             print("Invalid payment data")
             return
-
+        
+        #ETAPA 2: PROCESO DE PAGO
+        
         import stripe
         from stripe.error import StripeError
 
